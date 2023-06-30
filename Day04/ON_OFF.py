@@ -1,7 +1,7 @@
-from PyQt5.QtWidgets import *
-import sys
-from PyQt5 import uic
-import RPi.GPIO as GPIO
+from PyQt5.QtWidgets import * 
+import sys 
+from PyQt5 import uic 
+import RPi.GPIO as GPIO 
 import time
 
 led = 25
@@ -31,7 +31,6 @@ class qtApp(QMainWindow):
         self.btnBUZZER_ON.clicked.connect(self.BUZEER_ON_clicked)
         self.btnBUZZER_OFF.clicked.connect(self.BUZEER_OFF_clicked)
         self.btnWAVE_ON.clicked.connect(self.WAVE_ON_clicked)
-        self.btnWAVE_OFF.clicked.connect(self.WAVE_OFF_clicked)
 
 
     def LED_ON_clicked(self):
@@ -51,27 +50,25 @@ class qtApp(QMainWindow):
         self.lbbuzzerst.setText('BUZZER = OFF')
 
     def WAVE_ON_clicked(self):
-        self.startime = time.time()
-        self.stoptime = time.time()
-        GPIO.output(Trigger, True)
-        time.sleep(0.0001)
-        GPIO.output(Trigger, False)
-        if GPIO.input(Echo) == 0:
-            self.lblwavest.setText('False')
-        if GPIO.input(Echo) == 1:
-            self.lblwavest.setText('Success')
+        try:
+            while True:
+                startime = time.time()
+                stoptime = time.time()
+                GPIO.output(Trigger, True)
+                time.sleep(0.00001)
+                GPIO.output(Trigger, False)
+                while GPIO.input(Echo) == 0:
+                    startime = time.time()
+                while GPIO.input(Echo) == 1:
+                    stoptime = time.time()
+                TimeElapsed = stoptime - startime
+                distance = round((TimeElapsed * 34300) / 2,2)
+                self.lblwavest.setText(f'{distance}cm')
+                break
+        except KeyboardInterrupt:
+            pass
 
 
-    def WAVE_OFF_clicked(self):
-        while GPIO.input(Echo) == 0:
-            self.startime = time.time()
-        while GPIO.input(Echo) == 1:
-            self.stoptime = time.time()
-        TimeElapsed = self.stoptime - self.startime
-        distance = round((TimeElapsed * 34300) / 2,2)
-        self.lblwavest.setText(f'{distance}cm')
-         
-        
 
 
 if __name__=="__main__":

@@ -215,7 +215,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>MICROWAVE State</string>
+     <string>Distance</string>
     </property>
    </widget>
    <widget class="QFrame" name="frame_4">
@@ -236,7 +236,7 @@
     <widget class="QPushButton" name="btnWAVE_ON">
      <property name="geometry">
       <rect>
-       <x>110</x>
+       <x>170</x>
        <y>10</y>
        <width>109</width>
        <height>30</height>
@@ -244,19 +244,6 @@
      </property>
      <property name="text">
       <string>ON</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btnWAVE_OFF">
-     <property name="geometry">
-      <rect>
-       <x>230</x>
-       <y>10</y>
-       <width>111</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>OFF</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_5">
